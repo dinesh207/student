@@ -1,0 +1,82 @@
+<!-- Update availability -->
+<div class="container">
+<div class="row">
+	<div class="col-md-6 col-xs-12">
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+		  	<table>
+				<thead>
+					<th>Current Availabilty</th>
+				</thead>
+			</table>
+		  </div>
+		  <div class="panel-body">
+		  	<table class="table">
+			  	<tbody>
+					<tr ng-repeat="currentAvaialble in currentAvaialability">
+						<td>{{currentAvaialble.available | date:'medium'}}</td> 
+						<td><button type="button" uib-popover-template="dynamicPopover.templateUrl" popover-trigger="'focus'" popover-title="Are you sure you want to remove" type="button" ng-click="setAvailabilityToRemove(currentAvaialble)" >&times;</button></td>
+					</tr>
+				</tbody>
+			</table>
+		  </div>
+		</div>	
+	</div>
+	<div class="col-md-6 col-xs-12">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+	      	<span>Add your availability, you may select multiple dates</span>
+	    </div>
+	    <div class="panel-body">
+		    <form>
+				<div class="form-group">
+					<div class="col-xs-10">
+			        <div class="dropdown">
+			            <a  class="dropdown-toggle" id="dropdown1" role="top" data-toggle="dropdown" data-target="#"><i class="fa fa-calendar fa-3x" aria-hidden="true"></i></a>
+			            <ul class="dropdown-menu dropup" role="menu">
+			                <datetimepicker data-ng-model="selectedDate" data-datetimepicker-config="{ dropdownSelector: '#dropdown1',modelType:'Date' }"/>
+			            </ul>
+			        </div><br>
+			        Selected Date: <p ng-repeat="availableDate in availability">{{ availableDate.available |date:'medium'}} <button type="button" class="close" ng-click="removeSelectedDate($index)">&times;</button><br></p>
+		      		</div>
+			    </div>
+			</form>
+	    </div>
+	    <div class="panel-footer">
+		    <button type="button" ng-disabled="availability.length == 0" ng-click="postAvailability()" class="btn btn-primary">Update</button>
+	    </div>      
+	</div>
+</div>
+<div class="row" style="margin-bottom:120px;">	
+</div>
+
+<!-- RemoveAvailabilit modal -->
+  <div class="modal fade" id="removeAvailability">
+    <div class="modal-dialog">  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Are you Sure you want to remove current availability</h4>
+        </div>
+        <div class="modal-body">
+           	<div class="col-xs-10">
+	            <input class="form-control" type="text" value="{{slotTime.available |date:'medium'}}" id="example-text-input" placeholder="" readonly>
+	        </div>
+        </div>
+        <div class="modal-footer">
+    		<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+      		<button type="button" class="btn btn-default" ng-click="removeAvailability()">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- RemoveAvailbilit Modal -->
+</div>
+<script type="text/ng-template" id="myPopoverTemplate.html">
+    <!-- <div>Please confirm or reject</div> -->
+    <div class="form-group">
+      <button>No</button>
+      <button ng-click="removeAvailability()">Yes</button>
+    </div>
+</script>

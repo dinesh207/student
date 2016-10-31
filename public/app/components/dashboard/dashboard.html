@@ -1,0 +1,96 @@
+<style type="text/css">
+  .active{
+    color: #383b43;
+    border-bottom: 2px solid red;
+  }
+  .wrapper.style1{
+    background-color: #fff !important;
+  }
+  .navbar{
+    background: #3498db;
+    border:0;
+  }
+  .navbar-default .navbar-brand{
+    color: #fff;
+  }
+  .navbar-default .navbar-nav > li > a{
+    color: #fff;
+  }
+</style>
+<div>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsedNavbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+	  <div class="collapse navbar-collapse" id="collapsedNavbar">
+	    <a class="navbar-brand"></a>
+	    <ul class="nav navbar-nav">
+	      <li class="nav-item" ng-class="{active:$state.includes('dashboard.student')}">
+	        <a class="nav-link" ui-sref="dashboard.student" >Home<span class="sr-only">(current)</span></a>
+	      </li>
+        <li class="nav-item" ng-class="{'active':$state.includes('dashboard.studentSchedules')}">
+          <a class="nav-link" ui-sref="dashboard.studentSchedules" >Schedules</a>
+        </li>
+	    </ul>
+	    <ul class="nav navbar-nav navbar-right">
+        <li class="right-list logout-list">
+            <a id="dLogout" class="dropdown-toggle" data-toggle="dropdown" data-target="dLogout">
+                <span class="welcome-note">Welcome {{displayName}}!</span>
+                <i class="fa fa-user fa-lg" aria-hidden="true"></i>
+                <i class="caret"></i>
+            </a>
+            <ul class="dropdown-menu logout" role="menu" aria-labelledby="dLogout">
+                <li>
+                    <a data-toggle="modal" data-target="#changePassword">Change Password</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a ng-click="logout()">Log Out</a>
+                </li>
+            </ul>
+        </li>
+      </ul>
+	  </div>
+  </div>
+</nav>
+<div ui-view></div>
+
+<!-- Change Password Modal -->
+<div class="modal fade" id="changePassword">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form name="changePasswordForm">
+        <div class="modal-body changPassword-content">
+            <h4>Change Your Password</h4><br>
+            <div>
+                <p ng-show="oldPasswordCheck==true">Incorrect password.</p>
+                <input type="password" name="old_password" ng-model="oldpass" id="oldPassword" placeholder="Enter current password" required />
+            </div>
+            <div>
+                <p ng-show="violationCheck">Password should be at least 8 digits.<br>Password should include at least 2 from the following: one upper-cased letter, one lower-cased letter and one digit.</p>
+                <input type="password" name="new_password1" id="newPassword1" ng-blur="passCheck(newpass1)" ng-model="newpass1" placeholder="Enter new password" required />
+            </div>
+            <div>
+                <p ng-show="changePasswordForm.$error.pwmatch">The 2 passwords you entered are not the same.</p>
+                <input type="password" name="new_password2" ng-model="newpass2" id="newPassword2" placeholder="Reenter new password" required/>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <ul>
+            <li ng-click="clearFields()" data-dismiss="modal"><a href=""></a>Cancel</li>
+            <li ng-class="{'disableLink':changePasswordForm.$invalid || violationCheck}" data-ng-click="changePassword('/student/changePassword')"><a></a>OK</li>
+          </ul>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- /Change Password Modal -->
+</div>

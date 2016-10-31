@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html ng-app="mainApp">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<title>InstaTutor</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="js/angular-bootstrap-datetimepicker/src/css/datetimepicker.css"/>
+	<link rel="stylesheet" type="text/css" href="js/toast/ngToast-animations.min.css">
+	<link rel="stylesheet" type="text/css" href="js/toast/ngToast.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.1/angular-material.min.css">
+	<link rel="stylesheet" href="/css/app.css" />	
+</head>
+<body>
+<div style="position:relative; min-height:100%">
+	<toast></toast>
+	<nav id="nav" ng-if="!($state.includes('dashboard') || $state.includes('dashboard.student')|| $state.includes('dashboardTutor'))" ng-class="{'landingNav': $state.includes('app')}">
+		<div class="container">
+			<div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsedNavbar" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		    </div>
+		    <div class="collapse navbar-collapse" id="collapsedNavbar">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/">Home</a></li>
+					<li ui-sref="tutorLogin"><a class="button special">Tutor Sign In</a></li>
+					<li ui-sref="studentLogin"><a class="button special">Student Sign In</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- loading views -->
+	<div style="height:100%" ui-view></div>
+	<!-- Footer -->
+	<div style="position:absolute;width:100%;bottom:0">
+		<footer id="footer">
+			<div class="container">
+				<div class="row">
+					<div class="8u 12u$(medium)">
+						<ul class="copyright">
+							<li>&copy; All rights reserved.</li>
+						</ul>
+					</div>
+					<div class="4u$ 12u$(medium)">
+						<ul class="icons">
+							<li>
+								<a class="icon rounded fa-facebook"><span class="label">Facebook</span></a>
+							</li>
+							<li>
+								<a class="icon rounded fa-twitter"><span class="label">Twitter</span></a>
+							</li>
+							<li>
+								<a class="icon rounded fa-google-plus"><span class="label">Google+</span></a>
+							</li>
+							<!-- <li>
+								<a class="icon rounded fa-linkedin"><span class="label">LinkedIn</span></a>
+							</li> -->
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+</div>
+<script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+<!-- <script src="js/skel.min.js"></script>
+<script src="js/skel-layers.min.js"></script>
+<script src="js/init.js"></script> -->
+<script type="text/javascript" src="js/moment/moment.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script src="https://code.angularjs.org/1.5.0/angular.min.js"></script>
+<script src="https://code.angularjs.org/1.5.0/angular-route.min.js"> </script>
+<script src="https://code.angularjs.org/1.5.0/angular-cookies.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular-resource.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.1.3/ui-bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.1.3/ui-bootstrap-tpls.min.js"></script>
+
+<script src="js/bootstrap-datetimepicker.js"></script>
+
+<script src="js/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+<script src="js/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.1/angular-material.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.js"></script>
+<script src="js/toast/angular-sanitize.js"></script>
+<script src="js/toast/ngToast.min.js"></script>
+<!-- Main App -->
+<!-- <script src="app/app.js"></script> -->
+<!-- Dashboard app -->
+<!-- <script src="app/components/dashboard/dashboard.js"></script> -->
+
+<!-- Contollers -->
+<!-- <script src="app/components/student/student.controller.js"></script>
+<script src="app/components/tutor/tutor.controller.js"></script>
+<script src="app/components/login/student-login.controller.js"></script>
+<script src="app/components/login/tutor-login.controller.js"></script>
+<script src="app/components/dashboard/student/student-dashboard.controller.js"></script>
+<script src="app/components/dashboard/schedules/student-schedules.controller.js"></script>
+<script src="app/components/tutor-dashboard/tutor.dashboard.controller.js"></script>
+<script src="app/components/tutor-dashboard/home/tutor.home.controller.js"></script>
+<script src="app/components/tutor-dashboard/schedules/tutor.schedules.controller.js"></script> -->
+<!--  -->
+<!-- <script src="app/components/dashboard/dashboard.controller.js"></script> -->
+
+<!-- Services -->
+<!-- <script src="app/services/restrictTo.service.js"></script>
+<script src="app/services/student.service.js"></script>
+<script src="app/services/tutor.service.js"></script>
+<script src="app/services/auth.service.js"></script> -->
+<script type="text/javascript" src="dest/app.min.js"></script>
+
+</body>
+</html>

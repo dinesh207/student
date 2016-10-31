@@ -1,0 +1,48 @@
+<style type="text/css">
+	.login-form{
+		margin-top: 200px;
+	}
+	.form-class{
+		margin-bottom: 200px;
+	}
+	.loginButton{
+		background-color: #fff;
+	    color: #444 !important;
+	    line-height: 2.25em;
+	    margin-bottom: 0;
+	    padding: 0 60px;
+	    position: relative;
+	    vertical-align: middle;
+	    border-radius: 25px;
+	}
+</style>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12 col-md-12">
+			<div class="login-form">
+			     <form class="form-class">
+			        <h4>Tutor Login</h4>
+			        <div class="form-group row">
+			          <div ng-if="showError" class="alert alert-danger">
+						Your email or password was incorrect. Please try again.
+					  </div>
+			          <label for="example-text-input" class="col-form-label">Email</label><br>
+			          <div class="col-xs-10">
+			            <input class="form-control" type="text" ng-model="user.email" id="example-text-input" placeholder="Please Enter email">
+			          </div>
+			        </div>
+			        <div class="form-group row">
+			          <label for="example-search-input" class="col-form-label">Password</label><br>
+			          <div class="col-xs-10">
+			            <input class="form-control" ng-model="user.password" type="password" id="example-search-input"
+			            placeholder="Password">
+			          </div>
+			        </div>
+			        <button type="submit" class="button buttonBlue loginButton" ng-click="postLogin()">Login
+			      	</button>
+			    </form>
+			</div>
+		</div>
+	</div>
+</div>

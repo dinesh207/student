@@ -1,0 +1,53 @@
+<div class="container">
+	<div class="row" ng-if="schedulesToConfirm.length>0">
+		<h4>Schedule To Confirm</h4>
+		<table class="table table-stripped">
+			<thead>
+				<tr>
+					<th>Student Name</th>
+					<th>Email</th>
+					<th>Slot Time</th>
+					<th>Subject</th>
+					<th>Confirm</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="schedule in schedulesToConfirm">
+			        <td>{{schedule._bookedBy.firstName}} {{schedule._bookedBy.lastName}}</td>
+			        <td>{{schedule._bookedBy.email}}</td>
+			        <td>{{schedule.scheduledTime |date:'medium' }}</td>
+			        <td>{{schedule.bookedFor}}</td>
+			        <td><button uib-popover-template="dynamicPopover.templateUrl" popover-trigger="'focus'" popover-title="Please confirm or deny" type="button" class="btn btn-default" ng-click="setScheduleToConfirm(schedule)">confirm</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="row" ng-if="tutorUpcommingSchudles.length>0">
+		<h4>All Upcomming schedules</h4>
+		<table class="table table-stripped">
+			<thead>
+				<tr>
+					<th>Student Name</th>
+					<th>Email</th>
+					<th>Slot Time</th>
+					<th>For</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="schedule in tutorUpcommingSchudles">
+			        <td>{{schedule._bookedBy.firstName}} {{schedule._bookedBy.lastName}}</td>
+			        <td>{{schedule._bookedBy.email}}</td>
+			        <td>{{schedule.scheduledTime |date:'medium' }}</td>
+			        <td>{{schedule.bookedFor}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<script type="text/ng-template" id="myPopoverTemplate.html">
+    <!-- <div>Please confirm or reject</div> -->
+    <div class="form-group">
+      <button ng-click="confirmOrRejectSchedule(false, true)">deny</button>
+      <button ng-click="confirmOrRejectSchedule(true, false)">Confirm</button>
+    </div>
+</script>
