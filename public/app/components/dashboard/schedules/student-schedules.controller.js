@@ -1,5 +1,5 @@
 angular.module('mainApp')
-		.controller('studentSchedulesController', ['$scope','$state','student','AuthService','ngToast', 
+		.controller('studentSchedulesController', ['$scope','$state','student','AuthService','ngToast',
 			function($scope,$state,student, AuthService,ngToast){
 
 			//Get upcomming schedules
@@ -31,7 +31,7 @@ angular.module('mainApp')
 				$scope.initNewRating();
 			}
 
-			//Once Confirm tutoring removing row from schedules table 
+			//Once Confirm tutoring removing row from schedules table
 			$scope.removeSchudlesFromTable = function(){
 				if($scope.schedules.length>0){
 					angular.forEach($scope.schedules, function(schedule, key){
@@ -46,13 +46,13 @@ angular.module('mainApp')
 				if($scope.newRating.rating !==0 && $scope.tutorID !== null){
 					student.giveRating($scope.tutorID, $scope.newRating.rating)
 							.then(function(response){
-								$('#addReview').modal('hide');
+								$('#confirmModal').modal('hide');
+								$scope.removeSchudlesFromTable();
 								ngToast.create({
-										className: 'success',
-										content: "<span>Thanks for your review.</span>",
-										timeout:3000
-									});
-								
+											className: 'success',
+											content: "<p>Thanks for your confirmation</p>",
+											timeout:6000
+										});
 								$scope.initNewRating();
 							},function(response){
 
@@ -62,22 +62,13 @@ angular.module('mainApp')
 			//Confirm tutoring
 			$scope.confirm = false;
 			$scope.emptyFields = false;
-			$scope.confirmSchedule = function(){	 	
+			$scope.confirmSchedule = function(){
 			 	if($scope.schedule !== {} && $scope.newRating.rating !== 0){
 			 		$scope.tutorID = $scope.schedule._bookedTutor._id;
 				 	student.confirmTutoring($scope.confirm, $scope.schedule._id)
 				 			.then(function(response){
 				 				console.log("Thanks for confirming");
-				 				$('#confirmModal').modal('hide');
-				 				$scope.removeSchudlesFromTable();
 				 				$scope.addReview();
-				 				$scope.initNewRating();
-				 				ngToast.create({
-											className: 'success',
-											content: "<p>Thanks for your confirmation</p>",
-											timeout:6000
-										});
-
 				 			}, function(response){
 				 				console.log("confirmation failed");
 				 				ngToast.create({
@@ -90,5 +81,5 @@ angular.module('mainApp')
 			 		$scope.emptyFields = true;
 			 	}
 			}
-			
+
 		}])

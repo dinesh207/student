@@ -1,6 +1,26 @@
 angular.module('mainApp')
-		.controller('tutorController', ['$scope','tutor','$state', function($scope, tutor,$state){
-
+		.controller('tutorController', ['$scope','tutor','$state','$timeout', function($scope, tutor,$state,$timeout){
+			var initSelection = function(){
+					$(".customeSelect").select2({
+			      placeholder: "Select one or more subjects",
+			      selectOnBlur: true
+			    });
+			    $(".customeSelect1").select2({
+			      placeholder: "Select grade level",
+			      minimumResultsForSearch: Infinity
+			    })
+			    $(".customeSelect2").select2({
+			      placeholder: "Select availability",
+			    })
+			}
+			$scope.$watch('$state.params.pin', function(newValue, oldValue){
+					if(newValue && newValue == true){
+						console.log("adding select2");
+						$timeout(function () {
+							initSelection();
+						}, 100);
+					}
+			},true)
 			$scope.tutorRegistationDetails = {
 				firstname:'',
 				lastname:'',

@@ -5,6 +5,7 @@ var router = express.Router();
 var bodyParser = require('body-parser'); // for reading post body
 var cors = require('cors')
 var jwt = require('jsonwebtoken')
+var bcrypt = require('bcrypt')
 // var MongoClient = require('mongodb').MongoClient;
 var ObjectID = require('mongodb').ObjectID;
 
@@ -57,7 +58,7 @@ app.use(function(req, res, next) {
 	// Website you wish to allow to connect
 	console.log("setting access control allow for:" + process.env.NODE_ENV)
 	res.setHeader('Access-Control-Allow-Origin', '*');
-	if (process.env.NODE_ENV == 'development') { 
+	if (process.env.NODE_ENV == 'development') {
 		console.log("WARN - setting access control allow")
 		res.setHeader('Access-Control-Allow-Origin', '*');
 	}
@@ -106,5 +107,22 @@ router.post('/register/tutor', tutorRoute.createTutor);
 router.post('/login/tutor', tutorRoute.Login);
 app.use('/api', router);
 
-
-
+app.get('/verify/accessPIN/:pin', function(req, res){
+	if(!req.params.pin){
+		res.status(404);
+		res.json({"status" : 404,"message":"No pin provided"});
+		return;
+	}
+	var hash = "$2a$10$0zgI2Gupy2F2/K2R2qma3u3p8wrIhrFGET6ZtMkUVOWOUPHWB0L6G";
+	var PIN = req.params.pin;
+	var access = bcrypt.compareSync(PIN, hash);
+	if(access){
+		res.status(200);
+		res.json({"status" : 200,"message":"Access granted", "pinMatch":access});
+		return;
+	}else {
+		res.status(500);
+		res.json({"status" : 500,"message":"Access failed", "pinMatch":access});
+		return;
+	}
+})

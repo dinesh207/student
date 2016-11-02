@@ -1,5 +1,8 @@
 	<!-- Main -->
-	<section id="main" class="wrapper">
+	<div ng-if="!$state.params.pin">
+    <access-to></access-to>
+  </div>
+	<section id="main" class="wrapper" ng-if="$state.params.pin">
 		<div class="container">
 			<header class="major">
 				<h2>Student Registration</h2>

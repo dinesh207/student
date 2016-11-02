@@ -1,0 +1,16 @@
+<style>
+</style>
+<div class="container access-box">
+  <div class="row">
+    <form>
+      <div class="col-md-6 col-md-offset-3 changPassword-content">
+        <h5 style="text-align:left">For security reasons you need access pin to register.</h5>
+        <input type="password" name="old_password"
+          ng-model="pin" placeholder="Please enter access pin." maxlength="8" required />
+      </div>
+      <div class="pull-right">
+        <button ng-click="reqForAccess(pin)">continue</button>
+      </div>
+    </form>
+  </div>
+</div>

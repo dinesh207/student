@@ -1,6 +1,6 @@
 <div>
   <!-- Upcomming schedules -->
-  <div class="row" ng-if="schedules.length>0">
+  <div class="row" ng-if="schedules.length>0" style="padding:60px;">
     <label class="label-tutors">Schedules: </label>
     <table class="table table-stripped table-bordered">
       <thead class="thead-inverse">
@@ -22,12 +22,12 @@
             <a data-toggle="modal" ng-click="toBeConfirmed(schedule)" data-target="#confirmModal">Rate your last session</a>
           </td>
         </tr>
-      </tbody>    
+      </tbody>
     </table>
   </div>
   <!-- Add Review modal -->
     <div class="modal fade" id="confirmModal">
-    <div class="modal-dialog">  
+    <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">

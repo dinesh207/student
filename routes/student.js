@@ -141,7 +141,7 @@ exports.VerifyToken = function(req, res, next) {
 // 				sendJSONresponse(res, 404, err)
 // 				return
 // 			}
-			
+
 // 			tutors.forEach(function(tutor){
 // 				var info = {};
 // 				info._id=tutor._id;
@@ -177,7 +177,7 @@ exports.findTutors = function(req,res){
 				sendJSONresponse(res, 404, err)
 				return
 			}
-			
+
 			tutors.forEach(function(tutor){
 				var info = {};
 				info._id=tutor._id;
@@ -234,7 +234,7 @@ exports.bookTutor = function(req, res){
 					if(err){
 						sendJSONresponse(res, 500,{"message":"Unable to book tutor this time!"});
 						return;
-					}					
+					}
 					//Setting awaiting availability
 					//availableTutor.awaitingAvailability = schedule.scheduledTime;
 					for (var i = 0; i < availableTutor.availability.length; i++) {
@@ -256,7 +256,7 @@ exports.bookTutor = function(req, res){
 						student.firstName+' '+student.lastName+"\n Message From Student:  "+req.body.message;
 						sendMail(availableTutor.email, subject, content);
 					})
-					
+
 				})
 			}
 		})
@@ -273,7 +273,7 @@ var isTutoravalable = function(req,res, callback){
 	if(req.body.tutorId){
 		//Tutor.findOne({$and:[{'_id':ObjectId(req.body.tutorId)}, {'availability':{$in:[{available:req.body.slotTime, isawaiting:false}]}}]}, function(err, tutor){
 		  Tutor.findOne({$and:[{'_id':ObjectId(req.body.tutorId)}, {'availability':{$elemMatch:{available:req.body.slotTime, isawaiting:false}}}]}, function(err, tutor){
-			if(err){	
+			if(err){
 				return callback(err, null);;
 			}else if(tutor == []){
 				return callback(err, null);;
@@ -290,7 +290,7 @@ var isTutoravalable = function(req,res, callback){
 			// 	}
 			// }
 			callback(null,tutor);
-			
+
 		})
 	}else{
 		sendJSONresponse(res, 404, {"message":"No Tutor information provided"});
@@ -360,8 +360,8 @@ exports.giveRating = function(req, res){
 		var rating = new Rating();
 		rating._tutorId = tutor;
 		rating._givenBy = student._id;
-		//rating.rating = req.body.rating;//disabling rating as per requirement
-		rating.review = req.body.review;
+		rating.rating = req.body.rating;
+		//rating.review = req.body.review;//disabling rating as per requirement
 		rating.author.firstName = req.student.firstName;
 		rating.author.lastName = req.student.lastName;
 		rating.author.email = req.student.email;
@@ -413,8 +413,8 @@ exports.changePassword = function(req, res){
 			return
 		}else{
 			sendJSONresponse(res, 401, {"message":"password is invalid"});
-		}	
-	})	
+		}
+	})
 }
 exports.Login = function(req,res) {
 	getStudentWithUserName(req, res, function(req, res, student) {
@@ -509,7 +509,7 @@ var sendMail = function(email, subject, content) {
 		    subject: subject, // Subject line
 		    text: content //, // plaintext body
 		}
-	
+
 		transporter.sendMail(mailOptions, function(error, info){
 		    if(error){
 		        console.log(error);

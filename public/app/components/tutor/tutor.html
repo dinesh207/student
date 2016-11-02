@@ -10,22 +10,11 @@
     margin-top: 1px;
    }
   </style>
-  <script type="text/javascript">
-    $(".customeSelect").select2({
-      placeholder: "Select one or more subjects",
-      selectOnBlur: true
-    });
-    $(".customeSelect1").select2({
-      placeholder: "Select grade level",
-      minimumResultsForSearch: Infinity
-
-    })
-    $(".customeSelect2").select2({
-      placeholder: "Select availability",
-    })
-  </script>
   <!-- Main -->
-  <section id="main" class="wrapper">
+  <div ng-if="!$state.params.pin">
+    <access-to></access-to>
+  </div>
+  <section id="main" class="wrapper" ng-if="$state.params.pin">
     <div class="container">
       <header class="major">
         <h2>Tutor Registration</h2>
@@ -89,7 +78,7 @@
           <div class="col-xs-10">
            <select class="customeSelect form-control" ng-model="tutorRegistationDetails.subjects" multiple="multiple">
               <option>Non-calculus integrated Physics</option>
-              <option>Calculus integrated physics</option>                    
+              <option>Calculus integrated physics</option>
               <option>English: Elementry School</option>
               <option>English: Middle School</option>
               <option>English: Underclassmen</option>

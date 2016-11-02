@@ -49,7 +49,7 @@
                 <div class="input-group col-md-12" ng-if="false">
                     <select class="customeSelect2 form-control" ng-model="seekingHelp" multiple="multiple">
                         <option>Non-calculus integrated Physics</option>
-                        <option>Calculus integrated physics</option>                    
+                        <option>Calculus integrated physics</option>
                         <option>English: Elementry School</option>
                         <option>English: Middle School</option>
                         <option>English: Underclassmen</option>
@@ -110,10 +110,10 @@
               <!-- <span ng-repeat="rating in tutor.ratings">{{rating.review}}<br></span> -->
           </td>
           <!-- <td>
-              <a data-toggle="modal" data-target="#addReview" ng-click="setReviews(tutor.ratings, tutor._id)">Give Rating</a>  
+              <a data-toggle="modal" data-target="#addReview" ng-click="setReviews(tutor.ratings, tutor._id)">Give Rating</a>
           </td> -->
         </tr>
-      </tbody>    
+      </tbody>
     </table>
   </div>
 <!-- Testing for displying tutor list -->
@@ -127,7 +127,7 @@
             <div class="tutor-ratings">
               <small ng-if="tutor.ratings.length>0" uib-rating ng-model="tutor.avgRating" max="5" read-only="true" on-hover="hoveringOver(value)" on-leave="overStar = null" aria-labelledby="default-rating"></small>
               <small ng-if="tutor.ratings.length>0">Total {{tutor.ratings.length}} Reviews</small>
-              <small ng-if="!tutor.ratings.length>0">No Reviews</small>    
+              <small ng-if="!tutor.ratings.length>0">No Reviews</small>
             </div>
           </div>
           <div class="col-md-4 col-xs-2">
@@ -145,7 +145,7 @@
               <div class="col-md-6 col-xs-12" ng-repeat="availability in tutor.availability | orderBy:'available'" ng-class="{'not-allowed':availability.isawaiting === true}">
                   <a data-toggle="modal" data-target="#bookModal" ng-click="setBookTutor($index,tutor)">
                     <span>{{availability.available |date:'medium'}}</span>
-                  </a>  
+                  </a>
               </div>
             </div>
           </div>
@@ -161,8 +161,8 @@
             <div>
               <i class="fa fa-envelope-o" aria-hidden="true"></i><span>{{tutor.email}}</span>
             </div>
-          </div> 
-        </div> 
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -173,7 +173,7 @@
   <!-- Reviews Modal -->
   <!-- Modal -->
   <div class="modal fade" id="reviewModal">
-    <div class="modal-dialog">  
+    <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -200,7 +200,7 @@
   <!-- Not being used as per requirement -->
   <!-- Add Review modal -->
     <div class="modal fade" id="addReview">
-    <div class="modal-dialog">  
+    <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -223,7 +223,7 @@
   <!-- Add Review Modal -->
   <!-- Book Slot -->
     <div class="modal fade" id="bookModal">
-    <div class="modal-dialog">  
+    <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
